@@ -1,4 +1,4 @@
-install.packages("xts")
+# install.packages("xts")
 
 library(xts)
 
@@ -114,6 +114,117 @@ dat_xts <- as.xts(dat_zoo)
 # Alternatively, you may find yourself needing to share the results of your analysis with others, often expecting the data to be consumed by processes unaware of both R and xts. Most of us would prefer not to think of this horrible fate for our data, but the real world mandates that we at least understand how this works.
 # 
 # One of the best ways to write an xts object from R is to use the zoo function write.zoo(). In this exercise you'll take your temporary data and write it to disk using write.zoo()
+
+# Convert sunspots to xts using as.xts().
+sunspots_xts <- as.xts(sunspots) 
+
+# Get the temporary file name
+tmp <- tempfile()
+
+# Write the xts object using zoo to tmp 
+write.zoo(sunspots_xts, sep = ",", file = tmp)
+
+# Read the tmp file. FUN = as.yearmon converts strings such as Jan 1749 into a proper time class
+sun <- read.zoo(tmp, sep = ",", FUN = as.yearmon)
+
+# Convert sun into xts. Save this as sun_xts
+sun_xts<-as.xts(sun) 
+
+# The ISO-8601 standard
+# The ISO-8601 standard is the internationally recognized and accepted way to represent dates and times. The standard allows for a common format to not only describe dates, but also to represent ranges and repeating intervals.
+# 
+# xts makes use of this standard for all extract and replace operations. This makes code both easy to write and easy to maintain. It also makes for very concise expression of date ranges and intervals.
+# 
+# For xts to work correctly, it is very important to follow the standard exactly. Details can be found in xts subset and .parseISO8601 documentation.
+# 
+# Which is a valid ISO-8601 string acceptable by xts?
+#Not quite! Xts uses a forward slash (/) to denote ranges, so this can't be used as a separator between date columns.
+
+# One of the most powerful aspects of working with time series in xts is the ability to quickly and efficiently specify dates and time ranges for subsetting.
+# 
+# Date ranges can be extracted from xts objects by simply specifying the period(s) you want using special character strings in your subset.
+
+A["20090825"]       ## Aug 25, 2009
+A["201203/201212"]  ## Mar to Dec 2012
+A["/201601"]        ## Up to and including January 2016
+
+# Select all of 2016 from x
+x_2016 <- x["2016"]
+
+# Select January 1, 2016 to March 22, 2016
+jan_march <- x["20160101/2016-03-22"]
+
+# Verify that jan_march contains 82 rows
+82 == length(jan_march)
+
+#For this exercise you will create a simple but very common query. Extract a range of dates using the ISO-8601 feature of xts. After successfully extracting a full year, you will then create a subset of your new object with specific start and end dates using this same notation.
+
+# The most common time series data "in the wild" is daily. On occasion, you may find yourself working with intraday data, which contains both dates and times. In this case it is sometimes necessary to view only a subset of time for each day over multiple days. Using xts, you can slice days easily by using special notation in the i = argument to the single bracket extraction (i.e. [i, j]).
+# 
+# As you learned in the previous exercise, the trick to this is to not specify explicit dates, but rather to use the special T/T notation designed for intraday repeating intervals.
+
+#In this exercise, you will extract recurring morning hours from the time series irreg, which holds irregular data from the month of January 2010. Remember, you can always use the R console to experiment with irreg or to view the help pages with ?xts
+
+# Extract all data from irreg between 8AM and 10AM
+morn_2010 <- irreg["T08:00/T10:00"]
+
+# Extract the observations in morn_2010 for January 13th, 2010
+morn_2010["2010-01-13"]
+
+# Subset x using the vector dates
+x[dates]
+
+# Subset x using dates as POSIXct
+x[ as.POSIXct(dates)]
+
+# Update and replace elements
+# Replacing values in xts objects is just as easy as extracting them. You can use either ISO-8601 strings, date objects, logicals, or integers to locate the rows you want to replace. One reason you may want to do this would be to replace known intervals or observations with NA, say due to a malfunctioning sensor on a particular day or a set of outliers given a holiday.
+# 
+# For individual observations located sporadically throughout your data dates, integers or logical vectors are a great choice. For continuous blocks of time, ISO-8601 is the preferred method.
+# 
+# In this exercise, you'll continue using the vector dates from the previous exercise to modify your x object. Both are already loaded in your workspace.
+
+# Replace the values in x contained in the dates vector with NA
+x[dates] <- NA
+
+# Replace all values in x for dates starting June 9, 2016 with 0
+x["20160609/"] <- 0
+
+# Verify that the value in x for June 11, 2016 is now indeed 0
+x["2016-06-11"]
+
+# Find the first or last period of time
+# Sometimes you need to locate data by relative time. Something that is easier said than put into code. This is equivalent to requesting the head or tail of a series, but instead of using an absolute offset, you describe a relative position in time. A simple example would be something like the last 3 weeks of a series, or the first day of current month.
+# 
+# Without a time aware object, this gets quite complicated very quickly. Luckily, xts has the necessary prerequisites built in for you to use with very little learning required. Using the first() and last() functions it is actually quite easy!
+#   
+# For this exercise, you'll extract relative observations from a data set called temps, a time series of summer temperature data from Chicago, IL, USA.
+
+# Create lastweek using the last 1 week of temps
+lastweek <- last(temps, "1 week")
+
+# Print the last 2 observations in lastweek
+last(lastweek, n=2)
+
+# Extract all but the first two days of lastweek
+first(lastweek, "-2 days")
+
+# Combining first and last
+# Now that you have seen how to extract the first or last chunk of a time series using natural looking language, it is only a matter of time before you need to get a bit more complex.
+# 
+# In this exercise, you'll extract a very specific subset of observations by linking together multiple calls to first() and last().
+
+# Last 3 days of first week
+last(first(Temps, '1 week'), '3 days') 
+
+# You will reconfigure the example above using the temps data from the previous exercise. The trick to using such a complex command is to work from the inside function, out.
+
+# Extract the first three days of the second week of temps
+first(last(first(temps, "2 weeks"), "1 week"), "3 days")
+
+
+
+
 
 
 
