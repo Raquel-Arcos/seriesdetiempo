@@ -94,9 +94,26 @@ am2<- as.matrix(austres)
 # Inspect the head of am2
 head(am2)
 
+# Create dat by reading tmp_file
+dat<-read.csv(tmp_file)
 
+# Convert dat into xts
+xts(dat, order.by = as.Date(rownames(dat), "%m/%d/%Y"))
 
+# Read tmp_file using read.zoo
+dat_zoo <- read.zoo(tmp_file, index.column = 0, sep = ",", format = "%m/%d/%Y")
 
+# Convert dat_zoo to xts
+dat_xts <- as.xts(dat_zoo)
+
+# Exporting xts objects
+# Now that you can read raw data into xts and zoo objects, it is only natural that you learn how to reverse the process.
+# 
+# There are two main use cases for exporting xts objects. First, you may require an object to persist across sessions for use in later analysis. In this case, it is almost always best to use saveRDS() and readRDS() to serialize single R objects.
+# 
+# Alternatively, you may find yourself needing to share the results of your analysis with others, often expecting the data to be consumed by processes unaware of both R and xts. Most of us would prefer not to think of this horrible fate for our data, but the real world mandates that we at least understand how this works.
+# 
+# One of the best ways to write an xts object from R is to use the zoo function write.zoo(). In this exercise you'll take your temporary data and write it to disk using write.zoo()
 
 
 
