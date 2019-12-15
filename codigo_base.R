@@ -1,6 +1,18 @@
+
+
+
 # install.packages("xts")
 
 library(xts)
+library(datasets)
+
+xts1 <- xts(x=1:10, order.by = Sys.Date()-1:10)
+data <- rnorm(5)
+dates <- seq(as.Date("2017-05-01"), length=5, by="days")
+class(dates)
+xts2 <- xts(x=data, order.by = dates)
+
+
 
 # View the structure of ex_matrix
 str(ex_matrix)
@@ -222,18 +234,70 @@ last(first(Temps, '1 week'), '3 days')
 # Extract the first three days of the second week of temps
 first(last(first(temps, "2 weeks"), "1 week"), "3 days")
 
+# Matrix arithmetic - add, subtract, multiply, and divide in time!
+#   xts objects respect time. By design when you perform any binary operation using two xts objects, these objects are first aligned using the intersection of the indexes. This may be surprising when first encountered.
+# 
+# The reason for this is that you want to preserve the point-in-time aspect of your data, assuring that you don't introduce accidental look ahead (or look behind!) bias into your calculations.
+# 
+# What this means in practice is that you will sometimes be tasked with handling this behavior if you want to preserve the dimensions of your data.
+# 
+# Your options include:
+# 
+# Use coredata() or as.numeric() (drop one to a matrix or vector).
+# Manually shift index values - i.e. use lag().
+# Reindex your data (before or after the calculation).
+# In this exercise, you'll look at the normal behavior, as well as an example using the first option. For now you will use two small objects a and b. Examine these objects in the console before you start.
 
+# Add a and b
+a+b
 
+# Add a with the numeric value of b
+a+as.numeric(b)
 
+# Math with non-overlapping indexes
+# The previous exercise illustrated the ins and outs of doing basic math with xts objects. At this point you are aware that xts respects time and will only return the intersection of times when doing various mathematical operations.
+# 
+# We alluded to another way to handle this behavior in the last exercise. Namely, re-indexing your data before an operation. This makes it possible to preserve the dimensions of your data by leveraging the same mechanism that xts uses internally in its own Ops method (the code dispatched when you call + or similar).
+# 
+# The third way involves modifying the two series you want by assuring you have some union of dates - the dates you require in your final output. To do this you will need a few functions that won't be dealt with in depth until Chapter 3, but are very useful here.
+# 
+# merge(b, index(a))
+# Don't worry if you aren't yet familiar with merge(). This exercise may be easier if you just follow along with the instructions.
 
+# Add a to b, and fill all missing rows of b with 0
+a + merge(b, index(a), fill = 0)
 
+# Add a to b and fill NAs with the last observation
+a + merge(b, index(a), fill = na.locf)
 
+# Perform an inner join of a and b
+merge(a, b, join = "inner")
 
+# Perform a left-join of a and b, fill missing values with 0
+merge(a, b, join = "left", fill = 0)
 
+load("temps")
 
+# Fill missing values in temps using the last observation
+temps_last<-na.locf(temps) 
 
+# Fill missing values in temps using the next observation
+temps_next<-na.locf(temps, fromLast = TRUE) 
 
+data(AirPassengers)
+View(AirPassengers)
+class(AirPassengers)
 
+# Interpolate NAs using linear approximation
+na.approx(AirPass) 
 
+# Create a leading object called lead_x
+lead_x <- lag(x, k = -1)
+
+# Create a lagging object called lag_x
+lag_x <- lag(x, k = 1)
+
+# Merge your three series together and assign to z
+z<-merge(lead_x, x, lag_x)
 
 
