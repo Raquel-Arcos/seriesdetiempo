@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
 ## Contenido del curso
 
-Este documento recopila las gráfica que se generan en el curso _Visualizing Time Series Data in R_ de DataCamp.
+Este documento recopila las gráfica que se generan en el curso _Visualizing Time Series Data in R_ de DataCamp.  
 Como todos los cursos de DataCamp es de excelente calidad.
 
 ## Los datos

@@ -4,8 +4,8 @@ Visualizing Time Series Data in R
 ## Contenido del curso
 
 Este documento recopila las gráfica que se generan en el curso
-*Visualizing Time Series Data in R* de DataCamp. Como todos los cursos
-de DataCamp es de excelente calidad.
+*Visualizing Time Series Data in R* de DataCamp.  
+Como todos los cursos de DataCamp es de excelente calidad.
 
 ## Los datos
 
