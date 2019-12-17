@@ -24,11 +24,11 @@ de las acciones.
     ## 2016-12-29 38.64     62.90  59.21050        57.42
     ## 2016-12-30 38.67     62.14  59.26035        57.22
 
-![](codigo_curso2_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+<img src="codigo_curso2_files/figure-gfm/unnamed-chunk-3-1.png" title="Gráfica_1" alt="Gráfica_1" style="display: block; margin: auto;" />
 
-![](codigo_curso2_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->![](codigo_curso2_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+<img src="codigo_curso2_files/figure-gfm/unnamed-chunk-4-1.png" title="Gráfica_2" alt="Gráfica_2" style="display: block; margin: auto;" />
 
-![](codigo_curso2_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+<img src="codigo_curso2_files/figure-gfm/unnamed-chunk-5-1.png" title="Gráfica_3" alt="Gráfica_3" style="display: block; margin: auto;" /><img src="codigo_curso2_files/figure-gfm/unnamed-chunk-5-2.png" title="Gráfica_3" alt="Gráfica_3" style="display: block; margin: auto;" />
 
 ![](codigo_curso2_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->![](codigo_curso2_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
 

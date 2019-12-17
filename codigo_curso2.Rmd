@@ -36,47 +36,34 @@ tail(data, n=3)
 
 
 
-```{r}
+```{r fig.align="center", fig.cap="Gráfica_1"}
 # Also reduce margin and character sizes by half
-par(mfrow = c(4, 1), mex = 0.5, cex = 0.3)
+par(mfrow = c(2, 1), mex = 0.5, cex = 0.3)
 
 # Replot yahoo data with labels for X and Y axes
 plot(data$yahoo, main="Yahoo", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="dodgerblue4")
 
 # Plot the second time series and change title
 plot(data$microsoft, main="Microsoft", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkgreen")
+```
 
+```{r fig.align="center", fig.cap="Gráfica_2" }
+par(mfrow = c(2, 1), mex = 0.5, cex = 0.3)
 # Plot the second time series and change title
 plot(data$citigroup, main="Citigroup", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkorange")
 
 # Plot the second time series and change title
-plot(data$citigroup, main="Dow chemical", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkmagenta")
+plot(data$dow_chemical, main="Dow chemical", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkmagenta")
 ```
 
 
 
-```{r}
+```{r fig.align="center", fig.cap="Gráfica_3" }
 # Change line color to red
 plot(data$microsoft, type = "h", main="microsoft", sub="Daily closing price since 2015", las=1, xlab="date", ylab="price")
 lines(data$microsoft, col = "green")
 ```
 
-
-
-```{r}
-# Replot with reduced margin and character sizes
-par(mfrow = c(2, 1), mex = 0.6, cex = 0.8)
-plot(data$yahoo, type = "l", las=1, main="yahoo")
-plot(data$microsoft, type = "l", las=1, main="microsoft")
-# x specifies location of legend in plot
-legend(x = "bottomright",
-         # legend specifies text label(s)
-         legend = c("Stock X", "Stock Y"),
-         # col specifies color(s)
-         col = c("black", "red"),
-         # lty specifies line type(s)
-         lty = c(1, 1))
-```
 
 ```{r}
 # Plot the "microsoft" series
@@ -160,7 +147,7 @@ plot(data$apple, type = "l", las=1, main = "Apple stock price", xlab ="fecha")
 rtn<-ROC(data$apple)
 
 # Plot Apple daily price and daily returns 
-par(mfrow = c(1, 2), mex = 0.6, cex = 0.5)
+par(mfrow = c(2, 1), mex = 0.6, cex = 0.5)
 
 plot(data$apple, main = "Apple stock price")
 plot(rtn, col = "forestgreen") 
