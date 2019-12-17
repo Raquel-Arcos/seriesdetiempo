@@ -1,0 +1,176 @@
+---
+title: "Visualizing Time Series Data in R"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+## GitHub Documents
+
+This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+
+## Including Code
+
+
+```{r echo=FALSE, warning=FALSE}
+library(dplyr)
+library(xts)
+library(zoo)
+library(PerformanceAnalytics)
+library(TTR)
+```
+
+```{r}
+rm(list = ls())
+data <- read.csv.zoo("dataset_1_1.csv", header = TRUE, sep = "", index.column=1, format="%Y-%m-%d")
+
+# Display the first few lines of the data
+head(data)
+
+# Display the column names of the data
+colnames(data)
+
+# Plot yahoo data and add title
+plot(data$yahoo, type = "l", las=1, main="yahoo")
+
+# Replot yahoo data with labels for X and Y axes
+plot(data$yahoo, main="yahoo", type = "l", lwd = 2, las=1, xlab="date", ylab="price")
+
+# Plot the second time series and change title
+plot(data$microsoft, main="microsoft", type = "l", lwd = 2, las=1, xlab="date", ylab="price")
+
+# Replot with same title, add subtitle, use bars
+plot(data$microsoft, type = "h", main="microsoft", sub="Daily closing price since 2015", las=1, xlab="date", ylab="price")
+
+# Change line color to red
+plot(data$microsoft, type = "h", main="microsoft", sub="Daily closing price since 2015", las=1, xlab="date", ylab="price")
+lines(data$microsoft, col = "green")
+
+# Create 3x1 graphical window
+par(mfrow = c(3, 1))
+
+# Also reduce margin and character sizes by half
+par(mfrow = c(2, 1), mex = 0.5, cex = 0.5)
+
+# Plot two charts on same graphical window
+
+plot(data$yahoo, type = "l", las=1, main="yahoo")
+plot(data$microsoft,type = "l", las=1, main="microsoft")
+
+# Replot with reduced margin and character sizes
+par(mfrow = c(2, 1), mex = 0.6, cex = 0.8)
+plot(data$yahoo, type = "l", las=1, main="yahoo")
+plot(data$microsoft, type = "l", las=1, main="microsoft")
+
+# x specifies location of legend in plot
+legend(x = "bottomright",
+         # legend specifies text label(s)
+         legend = c("Stock X", "Stock Y"),
+         # col specifies color(s)
+         col = c("black", "red"),
+         # lty specifies line type(s)
+         lty = c(1, 1))
+
+# Plot the "microsoft" series
+plot(data$microsoft, type = "l", las=1, main="Stock prices since 2015")
+
+# Add the "dow_chemical" series in red
+lines(data$dow_chemical, col = "red")
+
+# Add a Y axis on the right side of the chart
+axis(side = 4, las=1, at = pretty(data$dow_chemical)) 
+
+# Add a legend in the bottom right corner
+legend(x = "bottomright", legend = c("microsoft", "dow_chemical"),col = c("black", "red"), lty = c(1, 1)) 
+
+# Plot the "citigroup" time series
+plot(data$citigroup, type = "l", las=1, main="Citigroup")
+
+# Create vert_line to identify January 4th, 2016 in citigroup
+vert_line <- which(index(data) == as.Date("2016-01-04"))
+
+# Add a red vertical line using vert_line
+abline(v = .index(data)[vert_line], col = "red")
+
+# Create hori_line to identify average price of citigroup
+hori_line <- mean(data$citigroup)
+
+# Add a blue horizontal line using hori_line
+abline(h = hori_line, col = "blue")
+
+# Create period to hold the 3 months of 2015
+period <- c("2015-01/2015-03")
+
+# Highlight the first three months of 2015 
+chart.TimeSeries(data$citigroup, period.areas = period)
+
+# Highlight the first three months of 2015 in light grey
+chart.TimeSeries(data$citigroup, period.areas = period, period.color="blue")
+
+# Plot the microsoft series
+plot(data$microsoft, type = "l", las=1, main="Dividend date and amount")
+
+# Add the citigroup series
+lines(data$citigroup, col = "orange", lwd=2) 
+
+# Add a new y axis for the citigroup series
+axis(side = 4, las=1, at = pretty(data$citigroup), col="orange") 
+
+# Same plot as the previous exercise
+plot(data$microsoft, main = "Dividend date and amount", las=1, xlab = "date")
+lines(data$citigroup, col = "orange", lwd = 2)
+axis(side = 4, las=1, at = pretty(data$citigroup), col = "orange")
+
+# Create the legend in the bottom right corner
+legend(x = "bottomright", legend = c("micro", "citi"), col = c("black", "orange"), lty = c(1, 1))
+
+```
+
+```{r}
+rm(list = ls())
+data1 <- read.csv("dataset_2_1.csv", header = TRUE, sep = "")
+names(data1)
+data2<-read.zoo(data1, index.column = 1, format ="%Y-%m-%d")
+data<-as.xts(data2)
+colnames(data)<-"apple"
+
+# Plot Apple's stock price 
+plot(data$apple, type = "l", las=1, main = "Apple stock price", xlab ="fecha")
+
+# Create a time series called rtn
+rtn<-ROC(data$apple)
+
+# Plot Apple daily price and daily returns 
+par(mfrow = c(2, 1), mex = 0.6, cex = 0.8)
+
+plot(data$apple, main = "Apple stock price")
+plot(rtn, col = "forestgreen") 
+
+# Create a histogram of Apple stock returns
+hist(rtn,
+     breaks = 20,
+     main = "Apple stock return distribution",
+     xlab = "",
+     probability=TRUE,
+     col = "darkslategray1")
+
+lines(density(rtn[-1,]), col="deeppink")
+
+# Redraw a thicker, red density line
+#lines(density(rtn), lwd=2, col="red")
+
+data(edhec)
+class(edhec)
+indice <- index(edhec)
+
+```
+
+
+
+
+
+
+
+
