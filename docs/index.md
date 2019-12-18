@@ -1,8 +1,8 @@
 ---
 title: "Visualizing Time Series Data in R"
-subtitle: "El segundo curso en el programa de series de tiempo de DataCamp"
+subtitle: "El segundo curso en el programa de Análisis de Series de tiempo de DataCamp"
 author: "Raquel Arcos Bulos"
-date: "Diciembre 2019"
+date: 2019-12-17
 fig_width: 5
 fig_height: 3
 knit: (function(input_file, encoding) {
@@ -19,14 +19,13 @@ output:
 
 ## Introducción
 
-Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/). Este curso forma parte del track [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía.     
-Tiene por objeto construir un archivo en _R Markdown_ que pueda ser visto como una página web por los visitantes de _Git Hub_ sin que deban descargar archivo alguno ni correr código en R. El usuario en Git Hub es Raquel-Arcos.
+Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/), el cual forma parte del track [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía dedicada a la Ciencia de Datos. Los ejemplos están principalmente enfocados a aplicaciones financieras pero una vez aprendidas las técnicas de procesamiento y visualización, es posible trabajar con datos para las ciencias sociales.     
 
-La conexión entre _R Studio_ y _Git Hub_ se realiza a través de los implementos que el IDE tiene para ello.
+El trabajo tiene por objeto construir un archivo en _R Markdown_ que pueda ser visto como una página web por los visitantes de _Git Hub_ sin que deban descargar archivo alguno ni correr código en R. El usuario en Git Hub es Raquel-Arcos.
 
-El diseño especial que tienen los gráficos se logra gracias a la librería _PerformanceAnalytics_
+La conexión entre _R Studio_ y _Git Hub_ se realizó a través de los implementos que el IDE tiene para ello lo que permite aprovechar las herramientas del segundo de forma rápida.
 
-
+El diseño especial que tienen los gráficos se logra gracias a la librería _PerformanceAnalytics_. ¡Usa R!
 
 
 
@@ -95,15 +94,15 @@ El primer archivo contiene los precios de acciones diarios de cuatro importantes
 <img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo8-1.png" alt="Gráfica_8"  />
 <p class="caption">Gráfica_8</p>
 </div>
-![](D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
-
-
 <div class="figure" style="text-align: center">
 <img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo9-1.png" alt="Gráfica_9"  />
 <p class="caption">Gráfica_9</p>
-</div><div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo9-2.png" alt="Gráfica_9"  />
-<p class="caption">Gráfica_9</p>
+</div>
+
+
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo10-1.png" alt="Gráfica_10"  />
+<p class="caption">Gráfica_10</p>
 </div>
 
 
@@ -111,11 +110,20 @@ El primer archivo contiene los precios de acciones diarios de cuatro importantes
 ## [1] "Index" "Apple"
 ```
 
-![](D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo11-1.png" alt="Gráfica_11"  />
+<p class="caption">Gráfica_11</p>
+</div>
 
-![](D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo12-1.png" alt="Gráfica_12"  />
+<p class="caption">Gráfica_12</p>
+</div>
 
-![](D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo13-1.png" alt="Gráfica_13"  />
+<p class="caption">Gráfica_13</p>
+</div>
 
 
 ```

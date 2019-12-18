@@ -1,8 +1,8 @@
 ---
 title: "Visualizing Time Series Data in R"
-subtitle: "El segundo curso en el programa de series de tiempo de DataCamp"
+subtitle: "El segundo curso en el programa de Análisis de Series de tiempo de DataCamp"
 author: "Raquel Arcos Bulos"
-date: "Diciembre 2019"
+date: 2019-12-17
 fig_width: 5
 fig_height: 3
 knit: (function(input_file, encoding) {
@@ -21,14 +21,13 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
 ## Introducción
 
-Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/). Este curso forma parte del track [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía.     
-Tiene por objeto construir un archivo en _R Markdown_ que pueda ser visto como una página web por los visitantes de _Git Hub_ sin que deban descargar archivo alguno ni correr código en R. El usuario en Git Hub es Raquel-Arcos.
+Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/), el cual forma parte del track [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía dedicada a la Ciencia de Datos. Los ejemplos están principalmente enfocados a aplicaciones financieras pero una vez aprendidas las técnicas de procesamiento y visualización, es posible trabajar con datos para las ciencias sociales.     
 
-La conexión entre _R Studio_ y _Git Hub_ se realiza a través de los implementos que el IDE tiene para ello.
+El trabajo tiene por objeto construir un archivo en _R Markdown_ que pueda ser visto como una página web por los visitantes de _Git Hub_ sin que deban descargar archivo alguno ni correr código en R. El usuario en Git Hub es Raquel-Arcos.
 
-El diseño especial que tienen los gráficos se logra gracias a la librería _PerformanceAnalytics_
+La conexión entre _R Studio_ y _Git Hub_ se realizó a través de los implementos que el IDE tiene para ello lo que permite aprovechar las herramientas del segundo de forma rápida.
 
-
+El diseño especial que tienen los gráficos se logra gracias a la librería _PerformanceAnalytics_. ¡Usa R!
 
 ```{r echo=FALSE, warning=FALSE}
 library(dplyr)
@@ -121,17 +120,17 @@ period <- c("2015-01/2015-03")
 # Highlight the first three months of 2015 
 chart.TimeSeries(data$citigroup, period.areas = period)
 ```
-```{r}
+```{r pedazo9, fig.align="center", fig.cap="Gráfica_9"}
 # Highlight the first three months of 2015 in light grey
 chart.TimeSeries(data$citigroup, period.areas = period, period.color="blue")
 ```
 
 
-```{r pedazo9, fig.align="center", fig.cap="Gráfica_9"}
+```{r pedazo10, fig.align="center", fig.cap="Gráfica_10"}
 # Same plot as the previous exercise
-plot(data$microsoft, main = "Dividend date and amount", las=1, xlab = "date")
+par(mfrow = c(2, 1), mex = 0.6, cex = 0.5)
+plot(data$microsoft, main = "Dividend date and amount MS and Citigroup", las=1, xlab = "date")
 lines(data$citigroup, col = "orange", lwd = 2)
-
 
 # Create the legend in the bottom right corner
 legend(x = "bottomright", legend = c("micro", "citi"), col = c("black", "orange"), lty = c(1, 1))
@@ -147,12 +146,12 @@ data<-as.xts(data2)
 colnames(data)<-"apple"
 ```
 
-```{r}
+```{r pedazo11, fig.align="center", fig.cap="Gráfica_11"}
 #Plot Apple's stock price 
 plot(data$apple, type = "l", las=1, main = "Apple stock price", xlab ="date")
 ```
 
-```{r}
+```{r pedazo12, fig.align="center", fig.cap="Gráfica_12"}
 # Create a time series called rtn
 rtn<-ROC(data$apple)
 
@@ -163,7 +162,7 @@ plot(data$apple, las=1, main = "Apple stock price", xlab ="date")
 plot(rtn, col = "forestgreen", main="RTN Apple stock price") 
 ```
 
-```{r}
+```{r pedazo13, fig.align="center", fig.cap="Gráfica_13"}
 # Create a histogram of Apple stock returns
 hist(rtn,
      breaks = 20,
