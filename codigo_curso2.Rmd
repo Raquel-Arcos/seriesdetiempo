@@ -1,19 +1,34 @@
 ---
 title: "Visualizing Time Series Data in R"
-output: github_document
+subtitle: "El segundo curso en el programa de series de tiempo de DataCamp"
+author: "Raquel Arcos Bulos"
+date: "Diciembre 2019"
+fig_width: 5
+fig_height: 3
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+output: 
+        html_document:
+            keep_md: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
-## Contenido del curso
+## Introducción
 
-Este documento recopila las gráfica que se generan en el curso _Visualizing Time Series Data in R_ de DataCamp.  
-Como todos los cursos de DataCamp es de excelente calidad.
+Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/). Este curso forma parte del track [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía.     
+Tiene por objeto construir un archivo en _R Markdown_ que pueda ser visto como una página web por los visitantes de _Git Hub_ sin que deban descargar archivo alguno ni correr código en R. El usuario en Git Hub es Raquel-Arcos.
 
-## Los datos
-El primer archivo de datos contiene precios de acciones de cuatro importante compañías: Microsoft, Yahoo, Citigroup y Dow Chemical. En los gráficos a continuación se presentan las series de tiempo de los precios de las acciones.
+La conexión entre _R Studio_ y _Git Hub_ se realiza a través de los implementos que el IDE tiene para ello.
+
+El diseño especial que tienen los gráficos se logra gracias a la librería _PerformanceAnalytics_
+
+
 
 ```{r echo=FALSE, warning=FALSE}
 library(dplyr)
@@ -34,52 +49,55 @@ head(data, n=3)
 tail(data, n=3)
 ```
 
+## Los datos
+El primer archivo contiene los precios de acciones diarios de cuatro importantes compañías: Yahoo, Microsoft, Citigroup y Dow Chemical en el periodo enero-2015 a diciembre 2016. A continuación se presentan las series de tiempo para cada compañía contrastando los precios vs las fechas.
 
-
-```{r fig.align="center", fig.cap="Gráfica_1"}
+```{r pedazo1, fig.align="center", fig.cap="Gráfica_1"}
 # Also reduce margin and character sizes by half
-par(mfrow = c(2, 1), mex = 0.5, cex = 0.3)
+par(mfrow = c(1, 1), mex = 0.6, cex = 0.3)
 
 # Replot yahoo data with labels for X and Y axes
 plot(data$yahoo, main="Yahoo", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="dodgerblue4")
-
-# Plot the second time series and change title
-plot(data$microsoft, main="Microsoft", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkgreen")
 ```
 
-```{r fig.align="center", fig.cap="Gráfica_2" }
-par(mfrow = c(2, 1), mex = 0.5, cex = 0.3)
+```{r pedazo2, fig.align="center", fig.cap="Gráfica_2"}
+par(mfrow = c(1, 1), mex = 0.6, cex = 0.3)
+# Plot the second time series and change title
+plot(data$microsoft, main="Microsoft", type = "l", lwd = 2, lty=2, las=1, xlab="date", ylab="price", col="darkgreen")
+```
+
+```{r pedazo3, fig.align="center", fig.cap="Gráfica_3" }
+par(mfrow = c(1, 1), mex = 0.6, cex = 0.3)
 # Plot the second time series and change title
 plot(data$citigroup, main="Citigroup", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkorange")
+```
 
+```{r pedazo4, fig.align="center", fig.cap="Gráfica_4"}
+par(mfrow = c(1, 1), mex = 0.6, cex = 0.3)
 # Plot the second time series and change title
 plot(data$dow_chemical, main="Dow chemical", type = "l", lwd = 2, las=1, xlab="date", ylab="price", col="darkmagenta")
 ```
 
 
-
-```{r fig.align="center", fig.cap="Gráfica_3" }
+```{r pedazo5,  fig.align="center", fig.cap="Gráfica_5" }
 # Change line color to red
-plot(data$microsoft, type = "h", main="microsoft", sub="Daily closing price since 2015", las=1, xlab="date", ylab="price")
+plot(data$microsoft, type = "h", col="grey", main="microsoft", sub="Daily closing price since 2015", las=1, xlab="date", ylab="price")
 lines(data$microsoft, col = "green")
 ```
 
 
-```{r}
+```{r pedazo6, fig.align="center", fig.cap="Gráfica_6" }
 # Plot the "microsoft" series
 plot(data$microsoft, type = "l", las=1, main="Stock prices since 2015")
 
 # Add the "dow_chemical" series in red
-lines(data$dow_chemical, col = "red")
-
-# Add a Y axis on the right side of the chart
-
+lines(data$dow_chemical, col = "dodgerblue4")
 
 # Add a legend in the bottom right corner
 legend(x = "bottomright", legend = c("microsoft", "dow_chemical"),col = c("black", "red"), lty = c(1, 1)) 
 ```
 
-```{r}
+```{r pedazo7, fig.align="center", fig.cap="Gráfica_7" }
 # Plot the "citigroup" time series
 plot(data$citigroup, type = "l", las=1, main="Citigroup")
 
@@ -96,7 +114,7 @@ hori_line <- mean(data$citigroup)
 abline(h = hori_line, col = "blue")
 ```
 
-```{r}
+```{r pedazo8, fig.align="center", fig.cap="Gráfica_8"}
 # Create period to hold the 3 months of 2015
 period <- c("2015-01/2015-03")
 
@@ -108,16 +126,8 @@ chart.TimeSeries(data$citigroup, period.areas = period)
 chart.TimeSeries(data$citigroup, period.areas = period, period.color="blue")
 ```
 
-```{r}
-# Plot the microsoft series
-plot(data$microsoft, type = "l", las=1, main="Dividend date and amount", xlab = "date")
-# Add the citigroup series
-lines(data$citigroup, col = "orange", lwd=2) 
 
-
-```
-
-```{r}
+```{r pedazo9, fig.align="center", fig.cap="Gráfica_9"}
 # Same plot as the previous exercise
 plot(data$microsoft, main = "Dividend date and amount", las=1, xlab = "date")
 lines(data$citigroup, col = "orange", lwd = 2)
@@ -139,7 +149,7 @@ colnames(data)<-"apple"
 
 ```{r}
 #Plot Apple's stock price 
-plot(data$apple, type = "l", las=1, main = "Apple stock price", xlab ="fecha")
+plot(data$apple, type = "l", las=1, main = "Apple stock price", xlab ="date")
 ```
 
 ```{r}
@@ -149,8 +159,8 @@ rtn<-ROC(data$apple)
 # Plot Apple daily price and daily returns 
 par(mfrow = c(2, 1), mex = 0.6, cex = 0.5)
 
-plot(data$apple, main = "Apple stock price")
-plot(rtn, col = "forestgreen") 
+plot(data$apple, las=1, main = "Apple stock price", xlab ="date")
+plot(rtn, col = "forestgreen", main="RTN Apple stock price") 
 ```
 
 ```{r}
