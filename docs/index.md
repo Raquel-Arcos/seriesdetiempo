@@ -1,6 +1,6 @@
 ---
 title: "Visualizing Time Series Data in R"
-subtitle: "El segundo curso en el programa de Análisis de Series de tiempo de DataCamp"
+subtitle: "El segundo curso en el programa de Análisis de Series de Tiempo de DataCamp"
 author: "Raquel Arcos Bulos"
 date: 2019-12-17
 fig_width: 5
@@ -19,15 +19,18 @@ output:
 
 ## Introducción
 
-Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/), el cual forma parte del track [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía dedicada a la Ciencia de Datos. Los ejemplos están principalmente enfocados a aplicaciones financieras pero una vez aprendidas las técnicas de procesamiento y visualización, es posible trabajar con datos para las ciencias sociales.     
+Este documento reúne los gráficos generados en el curso [Visualizing Time Series Data in R](https://www.datacamp.com/courses/visualizing-time-series-data-in-r) de [DataCamp](https://www.datacamp.com/), el cual forma parte del programa [Time Series with R](https://www.datacamp.com/tracks/time-series-with-r) de esta compañía dedicada a la capacitación en Ciencia de Datos. 
 
-El trabajo tiene por objeto construir un archivo en _R Markdown_ que pueda ser visto como una página web por los visitantes de _Git Hub_ sin que deban descargar archivo alguno ni correr código en R. El usuario en Git Hub es Raquel-Arcos.
+Los ejemplos están principalmente enfocados a aplicaciones financieras pero, una vez aprendidas las técnicas de procesamiento y visualización, es posible trabajar con datos para las ciencias sociales. Se requieren las librerías de R: `xts`, `zoo`, `TTR` y `Performance Analytics`. El diseño especial de los gráficos se logra gracias a la última.
 
-La conexión entre _R Studio_ y _Git Hub_ se realizó a través de los implementos que el IDE tiene para ello lo que permite aprovechar las herramientas del segundo de forma rápida.
+El trabajo tiene por objeto construir un archivo en [R Markdown](https://rmarkdown.rstudio.com/index.html) que pueda ser visto como una página web por los visitantes de `GitHub` sin que deban descargar ningún archivo o correr código en R. El usuario en `GitHub` es Raquel-Arcos.
 
-El diseño especial que tienen los gráficos se logra gracias a la librería _PerformanceAnalytics_. ¡Usa R!
+La conexión entre _R Studio_ y `GitHub` se realizó utilizando los implementos que el IDE tiene para ello, lo que reduce sustancialmente la posibilidad de cometer errores al actualizar los archivos.
 
 
+
+## Los datos
++ El primer archivo contiene los precios de acciones diarios de cuatro importantes compañías: Yahoo, Microsoft, Citigroup y Dow Chemical en el periodo enero-2015 a diciembre-2016 (dos años). 
 
 
 ```
@@ -44,95 +47,104 @@ El diseño especial que tienen los gráficos se logra gracias a la librería _Pe
 ## 2016-12-30 38.67     62.14  59.26035        57.22
 ```
 
-## Los datos
-El primer archivo contiene los precios de acciones diarios de cuatro importantes compañías: Yahoo, Microsoft, Citigroup y Dow Chemical en el periodo enero-2015 a diciembre 2016. A continuación se presentan las series de tiempo para cada compañía contrastando los precios vs las fechas.
-
+A continuación se presentan los cuatro gráficos de series de tiempo. 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo1-1.png" alt="Gráfica_1"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch4-1.png" alt="Gráfica_1"  />
 <p class="caption">Gráfica_1</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo2-1.png" alt="Gráfica_2"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch5-1.png" alt="Gráfica_2"  />
 <p class="caption">Gráfica_2</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo3-1.png" alt="Gráfica_3"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch6-1.png" alt="Gráfica_3"  />
 <p class="caption">Gráfica_3</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo4-1.png" alt="Gráfica_4"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch7-1.png" alt="Gráfica_4"  />
 <p class="caption">Gráfica_4</p>
 </div>
 
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo5-1.png" alt="Gráfica_5"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch8-1.png" alt="Gráfica_5"  />
 <p class="caption">Gráfica_5</p>
 </div><div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo5-2.png" alt="Gráfica_5"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch8-2.png" alt="Gráfica_5"  />
 <p class="caption">Gráfica_5</p>
 </div>
 
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo6-1.png" alt="Gráfica_6"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch9-1.png" alt="Gráfica_6"  />
 <p class="caption">Gráfica_6</p>
 </div><div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo6-2.png" alt="Gráfica_6"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch9-2.png" alt="Gráfica_6"  />
 <p class="caption">Gráfica_6</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo7-1.png" alt="Gráfica_7"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch10-1.png" alt="Gráfica_7"  />
 <p class="caption">Gráfica_7</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo8-1.png" alt="Gráfica_8"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch11-1.png" alt="Gráfica_8"  />
 <p class="caption">Gráfica_8</p>
 </div>
-<div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo9-1.png" alt="Gráfica_9"  />
-<p class="caption">Gráfica_9</p>
-</div>
 
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo10-1.png" alt="Gráfica_10"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch12-1.png" alt="Gráfica_10"  />
 <p class="caption">Gráfica_10</p>
 </div>
++ El segundo conjunto de datos contiene los precios diarios de acciones de la compañía Apple del 2 de enero de 2015 al 27 de enero de 2017.
 
-
-```
-## [1] "Index" "Apple"
-```
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo11-1.png" alt="Gráfica_11"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch14-1.png" alt="Gráfica_11"  />
 <p class="caption">Gráfica_11</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo12-1.png" alt="Gráfica_12"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch15-1.png" alt="Gráfica_12"  />
 <p class="caption">Gráfica_12</p>
 </div>
 
+Para observar la distribución de los retornos de los precios de las acciones de la compañía Apple, elaboramos un histograma de los mismos junto con la función de densidad correspondiente.
+
 <div class="figure" style="text-align: center">
-<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/pedazo13-1.png" alt="Gráfica_13"  />
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch16-1.png" alt="Gráfica_13"  />
 <p class="caption">Gráfica_13</p>
 </div>
 
 
-```
-## [1] "xts" "zoo"
-```
+Para observar en qué medida se asemeja la distribución de los retornos de los precios de las acciones de la compañía Apple a un conjunto de datos que siguen una distribución normal estándar, comparamos los gráficos de caja y brazo (boxplot) respectivos, lo que nos ayuda a visualizar tanto el sesgo como la asimetría de los datos de interés.
 
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch18-1.png" alt="Gráfica_14"  />
+<p class="caption">Gráfica_14</p>
+</div>
 
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch19-1.png" alt="Gráfica_15"  />
+<p class="caption">Gráfica_15</p>
+</div>
+Un gráfico **q-q plot** contrasta los cuantiles de un primer conjunto de datos con los de un segundo conjunto de datos. Se usa para estudiar si los datos de interés se asemejan a una distribucion normal. Si los datos de interés siguen aproximadamente una distribución normal, los puntos en el gráfico se apegarán a una recta diagonal. Esta vía es útil para verificar de forma visual la normalidad, pero no es una prueba estadística.
 
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch20-1.png" alt="Gráfica_16"  />
+<p class="caption">Gráfica_16</p>
+</div>
++ El tercer conjunto de datos contiene los retornos diarios de los precios de las acciones de la compañía estadounidense ExxonMobil del 5 de enero de 2015 al 30 de diciembre de 2016. En seguida se visualizan los cuatro gráficos estudiados para realizar un diagnóstico de series de tiempo. 
 
+<div class="figure" style="text-align: center">
+<img src="D:/Documentos/Raquel/Estudios/Estadistica/R/datacamp/series_de_tiempo/seriesdetiempo/docs/index_files/figure-html/ch21-1.png" alt="Gráfica_17"  />
+<p class="caption">Gráfica_17</p>
+</div>
 
 
 
